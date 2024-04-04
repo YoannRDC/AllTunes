@@ -9,19 +9,29 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@heroicons/react": "^2.1.3",
+    "@rainbow-me/rainbowkit": "^2.0.4",
+    "@tanstack/react-query": "^5.28.14",
+    "dotenv": "^16.4.5",
+    "lodash.merge": "^4.6.2",
+    "next": "14.1.4",
     "react": "^18",
     "react-dom": "^18",
-    "next": "14.1.4"
+    "scroll-lock": "^2.1.5",
+    "viem": "^2.9.8",
+    "wagmi": "^2.5.18"
   },
   "devDependencies": {
-    "typescript": "^5",
+    "@types/lodash.merge": "^4.6.7",
     "@types/node": "^20",
     "@types/react": "^18",
     "@types/react-dom": "^18",
-    "autoprefixer": "^10.0.1",
-    "postcss": "^8",
-    "tailwindcss": "^3.3.0",
+    "@types/scroll-lock": "^2.1.3",
+    "autoprefixer": "^10.4.19",
     "eslint": "^8",
-    "eslint-config-next": "14.1.4"
+    "eslint-config-next": "14.1.4",
+    "postcss": "^8.4.38",
+    "tailwindcss": "^3.4.3",
+    "typescript": "^5"
   }
 }
