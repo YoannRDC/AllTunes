@@ -65,9 +65,9 @@ const Header = () => {
     >
       <header>
         <div className="flex items-center px-5 lg:px-7.5 xl:px-10 max-lg:py-4">
-          <a href="#allfeat" className="block w-[12rem] xl:mr-8">
+          <Link href="/" className="block w-[12rem] xl:mr-8">
             <LogoSvg />
-          </a>
+          </Link>
 
           <nav
             className={`${openNavigation ? "flex" : "hidden"} 

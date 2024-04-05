@@ -1,12 +1,14 @@
 import React from 'react'
 import Header from '../components/Header'
-import Artist from '../components/Artist'
+import Artist from '../components/artist/Artist'
 
 const page = () => {
   return (
     <div>
-        <Header />
+      <Header />
+      <div className='p-6'>
         <Artist />
+      </div>
     </div>
   )
 }

@@ -1,7 +1,7 @@
 const MenuSvg = ({openNavigation}: {openNavigation: boolean}) => {
     return (
       <svg
-        className="overflow-visible"
+        className="overflow-visible dark:text-gray-50 text-gray-950"
         width="20"
         height="12"
         viewBox="0 0 20 12"
@@ -12,7 +12,7 @@ const MenuSvg = ({openNavigation}: {openNavigation: boolean}) => {
           width="20"
           height="2"
           rx="1"
-          fill="white"
+          fill="currentColor"
           transform={`rotate(${openNavigation ? "45" : "0"})`}
         />
         <rect
@@ -21,7 +21,7 @@ const MenuSvg = ({openNavigation}: {openNavigation: boolean}) => {
           width="20"
           height="2"
           rx="1"
-          fill="white"
+          fill="currentColor"
           transform={`rotate(${openNavigation ? "-45" : "0"})`}
         />
       </svg>

@@ -9,13 +9,11 @@ const currentDate = new Date();
 
 interface IFormData {
     address: `0x${string}`
-    name: string
+    projectName: string
     currentDate: string
-    alias?: string
-    image?: string
 }
 
-const CreateArtist = (
+const CreateProjectForm = (
     {
         title,
         description,
@@ -33,10 +31,8 @@ const CreateArtist = (
     const { theme } = useThemeContext()
     const [formData, setFormData] = useState<IFormData>({
         address: address || '0x',
-        name: '',
+        projectName: '',
         currentDate: currentDate.toLocaleString(),
-        alias: '',
-        image: ''
       });
 
     
@@ -65,25 +61,10 @@ const CreateArtist = (
                     {description && <p className='text-sm mt-3'>{description}</p>}
                     
                     <Input props={{
-                        id: "name", name: "name", placeHolder: "Enter your name", label: "Your name",
-                        value: formData.name, onChange: handleChange, required: true,
+                        id: "projectName", name: "projectName", placeHolder: "Enter a project name", label: "Project name",
+                        value: formData.projectName, onChange: handleChange, required: true,
                         classes: { box: `mt-6`, input: `mt-2` }
                     }} />
-
-                    <Input props={{
-                        id: "alias", name: "alias", placeHolder: "Enter your alias", 
-                        label: "Your Alias (Optional)",
-                        value: formData.alias, onChange: handleChange,
-                        classes: { box: 'mt-5 relative', input: 'mt-2' }
-                    }} />
-
-                    <Input props={{
-                        id: "image", name: "image", type: "file",  label: "Upload your Avatar (Optional)",
-                        ref: formData.image, value: formData.image,
-                        onChange: handleChange,
-                        classes: { box: 'mt-5 relative', input: 'mt-2' }
-                    }}><p className='text-center'>{formData.image}</p>
-                    </Input>
 
 
                     <div className="mt-8 relative flex font-normal text-sm gap-4 justify-end">
@@ -98,4 +79,4 @@ const CreateArtist = (
 }
 
 
-export { CreateArtist }
+export { CreateProjectForm }

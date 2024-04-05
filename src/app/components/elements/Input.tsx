@@ -10,12 +10,14 @@ export interface IInputClasses {
 export interface IInput {
   id: string
   name: string
-  value: string
   onChange: (event: any) => void
-  placeHolder: string
+  value?: string
+  ref?: string
+  placeHolder?: string
   label?: string
   type?: string
   classes?: IInputClasses
+  required?: boolean
 }
 
 const Input = ({ children, props }: { children?: React.ReactNode, props: IInput }) => {
@@ -38,6 +40,7 @@ const Input = ({ children, props }: { children?: React.ReactNode, props: IInput 
         name={props.name}
         type={props.type ? props.type : 'text'}
         onChange={props.onChange}
+        {...(props.required ? { required: true } : {})}
         placeholder={props.placeHolder}
         className={`${props.classes?.input ? props.classes?.input : ''} 
                 py-1 px-2 rounded-md 

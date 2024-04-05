@@ -5,8 +5,10 @@ import DAO from '../components/DAO'
 const page = () => {
   return (
     <div>
-        <Header />        
-        <DAO />
+        <Header />
+        <div className='p-6'>
+          <DAO />
+        </div>
     </div>
   )
 }

@@ -6,7 +6,9 @@ const page = () => {
   return (
     <div>
         <Header />
-        <Founder />
+        <div className='p-6'>
+          <Founder />
+        </div>
     </div>
   )
 }

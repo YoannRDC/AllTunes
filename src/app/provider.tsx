@@ -6,8 +6,6 @@ import {
     getDefaultWallets,
     getDefaultConfig,
     Chain,
-    lightTheme,
-    Theme,
 } from '@rainbow-me/rainbowkit';
 import {
     argentWallet,
@@ -17,29 +15,7 @@ import {
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { WagmiProvider } from 'wagmi';
 import { Harmony, HarmonyTestnet, IHarmonyNetwork } from './constants/networks';
-import merge from 'lodash.merge';
 import '@rainbow-me/rainbowkit/styles.css';
-
-
-
-// const customTheme = merge(lightTheme({
-//     borderRadius: 'small',
-//     overlayBlur: 'small',
-//     fontStack: 'system',
-// }), {
-//     colors: {
-//         accentColor: '#4c5be0ff',
-//         accentColorForeground: '#d7fffdff', // Test Button
-//         connectButtonBackground: '#5452e7',
-//         connectButtonText: '#f1f5f9',
-//         generalBorder: '#4c5be0ff',
-//         menuItemBackground: '#4c5be066',
-//         profileActionHover: '#4c5be066',
-//         selectedOptionBorder: '',
-//         standby: '',
-//     },
-// } as Theme)
-
 
 
 const projectId: string = process.env.NEXT_PUBLIC_WALLET_PROJECT_ID || ""
