@@ -5,7 +5,7 @@ import { Harmony, HarmonyTestnet, IHarmonyNetwork } from '../constants/networks'
 
 
 const network = process.env.NEXT_PUBLIC_ENABLE_TESTNETS === 'true' ? 'testnet' : 'main'
-
+console.log('testnet', network)
 let networkConfig: IHarmonyNetwork
 
 switch (network) {
@@ -13,12 +13,10 @@ switch (network) {
     case 'main': networkConfig = Harmony
     default: networkConfig = HarmonyTestnet
 }
-
+console.log('networkConfig', networkConfig)
 export const allfeat = {
     id: networkConfig.id,
     name: networkConfig.name,
-    iconUrl: networkConfig.iconUrl,
-    iconBackground: '#fff',
     nativeCurrency: {
         name: networkConfig.nativeTokenName,
         symbol: networkConfig.nativeToken,
@@ -33,13 +31,15 @@ export const allfeat = {
             url: networkConfig.blockExplorerUrl
         },
     },
-    contracts: {
-        multicall3: {
-            address: process.env.NEXT_PUBLIC_SMART_CONTRACT_ADDRESS as `0x${string}` || "0x",
-            blockCreated: Number(process.env.NEXT_PUBLIC_GENESIS_BLOCK) || 0,
-        },
-    },
+    // contracts: {
+    //     multicall3: {
+    //         // address: process.env.NEXT_PUBLIC_CONTRACT_ADDRESS_ARTIST_VAULT as `0x${string}` || "0x",
+    //         // blockCreated: Number(process.env.NEXT_PUBLIC_GENESIS_BLOCK_ARTIST_VAULT) || 0,
+    //         address: "0x",
+    //     },
+    // },
 } as const satisfies Chain
+console.log('allfeat', allfeat)
 
 
 export const config = createConfig({
@@ -48,8 +48,9 @@ export const config = createConfig({
       [allfeat.id]: http(),
     },
 })
-
+console.log('config', config)
 export const client = createPublicClient({
     chain: allfeat,
     transport: http(HarmonyTestnet.rpcUrl[0])
 })
+console.log('client', client)

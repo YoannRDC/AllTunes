@@ -16,7 +16,7 @@ const Artist = () => {
   const { address, isConnected } = useAccount()
   const { theme } = useThemeContext()
   // Need a function to set this state
-  const [isAnArtist, setIsAnArtist] = useState<boolean>(true)
+  const [isAnArtist, setIsAnArtist] = useState<boolean>(false)
 
   return (
     <Section

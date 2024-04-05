@@ -13,12 +13,13 @@ export interface IProjectCreated {
 }
 
 // Events
-export const readEventProjectCreated = async () => {
+export const readEventProjectCreated = async () => {  
     return readEvents(
         ProjectCreated,
         contractAddressArtistVault,
         genesisBlockArtistVault
     ).then(events => {
+        console.log('events', events)
         let data: IProjectCreated[] = []
 
         for (let i = 0; i < events.length; i++) {

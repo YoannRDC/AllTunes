@@ -17,7 +17,7 @@ const ArtistProfileBoard = ({ address }: { address: `0x${string}` }) => {
 
     useEffect(() => {
         handleGetArtist()
-    },)
+    }, [])
 
     return (
         <>

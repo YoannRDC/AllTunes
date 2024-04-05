@@ -14,7 +14,7 @@ const GetArtists = () => {
 
     useEffect(() => {
         handleGetArtists()
-    },)
+    }, [])
     
 
     return (

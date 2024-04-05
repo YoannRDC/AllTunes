@@ -44,7 +44,7 @@ const Header = () => {
     document.body.classList.add('dark:text-gray-50');
     document.body.classList.add('bg-gray-50');
     document.body.classList.add('text-gray-950');
-  },)
+  }, [])
   
   useEffect(() => {
     if (themeMode === 'dark') {

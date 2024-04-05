@@ -4,8 +4,7 @@ import {
     ProposalExecuted, 
     VoteCast, 
     contractAddressProjectDAO, 
-    genesisBlockProjectDAO, 
-    abiProjectDAO 
+    genesisBlockProjectDAO,  
 } from '../constants/projectDAO'
 import { readEvents } from './index'
 
@@ -40,12 +39,14 @@ export interface IVoteCast {
 }
 
 
+
 export const readEventProposalCreated = async () => {
     return readEvents(
         ProposalCreated,
         contractAddressProjectDAO,
         genesisBlockProjectDAO
     ).then(events => {
+        console.log('event from ProposalCreated', events)
         let data: IProposalCreated[] = []
 
         for (let i = 0; i < events.length; i++) {
@@ -63,6 +64,7 @@ export const readEventProposalCreated = async () => {
                 description: e.description,
             }
             data.push(proposalCreated)
+            
         }
         return data
     })

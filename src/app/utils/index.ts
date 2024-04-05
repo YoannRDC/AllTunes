@@ -47,8 +47,8 @@ export const readContractByFunctionName = async <T>(
 
     try {
         const data: Promise<T>|unknown = await readContract(config, {
-            abi: abi,
             address: contractAddress,
+            abi: abi,
             functionName: functionName,
             account: address,
             args: args
@@ -59,6 +59,14 @@ export const readContractByFunctionName = async <T>(
         throw formattedError(err)
     }
 }
+
+// const result = await readContract(config, {
+//     address: contractAddressProjectDAO,
+//     abi: abiProjectDAO,
+//     functionName: 'name',
+//     args: [],
+// })
+// console.log('result', result)
 
 
 export const writeContractByFunctionName = async (
@@ -90,14 +98,16 @@ export const readEvents = async (
     genesisBlock: string
 ): Promise<GetLogsReturnType<any>> => {
     try {
-        return await client.getLogs({
+        const logs = await client.getLogs({
             address: contractAddress,
             event: parseAbiItem([signature]),
             fromBlock: BigInt(genesisBlock),
             toBlock: 'latest'
         })
-        
+        console.log('logs', logs)
+        return logs
     } catch (err) {
+        console.log('error', err)
         throw formattedError(err)
     }
 }

@@ -62,7 +62,7 @@ const ArtistProfile = ({ artist, params }: { artist: IArtist, params?: IArtistPr
     useEffect(() => {
         handleUrlRef()
         handleGetGenres()
-    },)
+    }, [])
     
     return (
         <div className={`
