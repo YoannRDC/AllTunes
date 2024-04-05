@@ -4,9 +4,10 @@ import {
     ProposalExecuted, 
     VoteCast, 
     contractAddressProjectDAO, 
-    genesisBlockProjectDAO,  
+    genesisBlockProjectDAO,
+    abiProjectDAO,  
 } from '../constants/projectDAO'
-import { readEvents } from './index'
+import { readContractByFunctionName, readEvents } from './index'
 
 // Interfaces
 export interface IProposalCreated {
@@ -134,3 +135,21 @@ export const readEventVoteCast = async () => {
         return data
     })
 }
+
+// Read contract from chain
+export const getProjectNameFromChain = async (
+    address: `0x${string}`
+): Promise<string> => {
+    return readContractByFunctionName<string>(
+        'name',
+        abiProjectDAO,
+        contractAddressProjectDAO,
+        address,
+    )
+        .then(name => name)
+        .catch((err) => {
+            console.log(err)
+            return ""
+        })
+}
+
