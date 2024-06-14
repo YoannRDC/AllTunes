@@ -5,7 +5,7 @@ import { Harmony, HarmonyTestnet, IHarmonyNetwork } from '../constants/networks'
 
 
 const network = process.env.NEXT_PUBLIC_ENABLE_TESTNETS === 'true' ? 'testnet' : 'main'
-console.log('testnet', network)
+console.log('config.ts:testnet', network)
 let networkConfig: IHarmonyNetwork
 
 switch (network) {
@@ -13,7 +13,7 @@ switch (network) {
     case 'main': networkConfig = Harmony
     default: networkConfig = HarmonyTestnet
 }
-console.log('networkConfig', networkConfig)
+console.log('config.ts:networkConfig', networkConfig)
 export const allfeat = {
     id: networkConfig.id,
     name: networkConfig.name,
@@ -39,7 +39,7 @@ export const allfeat = {
     //     },
     // },
 } as const satisfies Chain
-console.log('allfeat', allfeat)
+console.log('config.ts:allfeat', allfeat)
 
 
 export const config = createConfig({
@@ -48,9 +48,9 @@ export const config = createConfig({
       [allfeat.id]: http(),
     },
 })
-console.log('config', config)
+console.log('config.ts:config', config)
 export const client = createPublicClient({
     chain: allfeat,
     transport: http(HarmonyTestnet.rpcUrl[0])
 })
-console.log('client', client)
+console.log('config.ts:client', client)

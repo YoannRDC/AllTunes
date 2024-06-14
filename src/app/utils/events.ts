@@ -47,14 +47,14 @@ export const handleEvents = (
         ok: false
     }
     
-    console.log(`handle events`, eventLogs)
+    console.log(`event.ts:handle events`, eventLogs)
     
     for (const log of eventLogs as Iterable<Log>) {
         // @ts-expect-error experimental
         const logArgs: any = log.args
         
-        console.log('handleEvents mapping', mapping)
-        console.log('handleEvents logArgs', logArgs)
+        console.log('event.ts:handleEvents mapping', mapping)
+        console.log('event.ts:handleEvents logArgs', logArgs)
 
         if (logArgs[mapping.addressAttribute] === mapping.addressValue) {
             const eventLog: IEventLog  = {

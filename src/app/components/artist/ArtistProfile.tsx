@@ -13,21 +13,13 @@ interface IArtistProfile {
     activeLink?: boolean // enable the link to go to profile board
 }
 
-interface ITabSelected {
-    project: boolean
-    music: boolean
-}
-
 const ArtistProfile = ({ artist, params }: { artist: IArtist, params?: IArtistProfile }) => {
     const { theme } = useThemeContext()
     const [index, setIndex] = useState<number>(0)
     const [urlRef, setUrlRef] = useState("#")
     const [genres, setGenres] = useState<string[]>([])
     const router = useRouter()
-    const [tabSelected, setTabSelected] = useState<ITabSelected>({
-        project: true,
-        music: false
-    })
+    const [selectedTab, setSelectedTab] = useState<string>("Project")
    
     const handleUrlRef = () => {
          if (params?.activeLink === true) setUrlRef(`/artist/${artist.address}`)
@@ -43,20 +35,8 @@ const ArtistProfile = ({ artist, params }: { artist: IArtist, params?: IArtistPr
         return genres.find((genre, id) => id === genreId);
     }
     
-    const toggleTabSelection = (selected: keyof ITabSelected) => {
-        let _tabSelected: ITabSelected = tabSelected
-
-        for (const key in _tabSelected) {
-            const tabKey = key as keyof ITabSelected;
-
-            if (_tabSelected.hasOwnProperty(key) && tabKey === selected ) {
-                _tabSelected[tabKey] = true;
-            } else {
-                _tabSelected[tabKey] = false;
-            }
-        }
-
-        setTabSelected(_tabSelected)
+    const toggleTabSelection = (selected: string) => {
+        setSelectedTab(selected)
     }
 
     useEffect(() => {
@@ -114,34 +94,28 @@ const ArtistProfile = ({ artist, params }: { artist: IArtist, params?: IArtistPr
 
                 <div className={`mt-20 border-b ${theme?.borderFocus}`}></div>
 
-                {/*  */}
+                {/* Tab selector */}
                 <div className='flex justify-center gap-4 p-4'>
                     <Button props={{ 
-                        onClick: () => {toggleTabSelection("project")}, 
-                        extendClasses: tabSelected.project === true ? theme?.bgBtnSecondary : theme?.bgBtnPrimary
+                        onClick: () => {toggleTabSelection("Project")}, 
+                        extendClasses: selectedTab === 'Project' ? theme?.bgBtnSecondary : theme?.bgBtnPrimary
                     }}>My projects</Button>
                     
                     <Button props={{ 
-                        onClick: () => {toggleTabSelection("music")}, 
-                        extendClasses: tabSelected.music === true ? theme?.bgBtnSecondary : theme?.bgBtnPrimary
+                        onClick: () => {toggleTabSelection("Music")}, 
+                        extendClasses: selectedTab === 'Music' ? theme?.bgBtnSecondary : theme?.bgBtnPrimary
                     }}>My musics</Button>
                 </div>
 
+                {/* Tab content */}
                 <div className='flex w-full '>
                     
-                    <div className={`
-                        ${tabSelected.project === true ? 'block' : 'hidden'}
-                        
-                    `}>
+                    <div className={`${selectedTab === 'Project' ? 'block' : 'hidden'}`}>
                         Project: 
-
                     </div>
                     
                     
-                    <div className={`
-                        ${tabSelected.music === true ? 'block' : 'hidden'}
-                        
-                    `}>
+                    <div className={`${selectedTab === 'Music' ? 'block' : 'hidden'}`}>
                         Music: 
                     </div>
                     

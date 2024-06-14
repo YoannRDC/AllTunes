@@ -10,6 +10,7 @@ import { IArtist } from "./artistVault";
 
 
 export const getArtists = async (): Promise<IArtist[]> => {
+    console.log("artist.ts:getArtists", artistsData)
     return artistsData
 }
 
@@ -17,6 +18,8 @@ export const getArtists = async (): Promise<IArtist[]> => {
 export const getArtist = async (address: `0x${string}`): Promise<void | IArtist> => {   
     return getArtists()
         .then((artists) => {
+            const _artist = artists.find((artist) => artist.address === address);
+            // console.log('Artist : ', _artist)
             return artists.find((artist) => artist.address === address);
         })
 }
