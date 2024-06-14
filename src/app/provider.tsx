@@ -14,7 +14,7 @@ import {
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { WagmiProvider } from 'wagmi';
 import '@rainbow-me/rainbowkit/styles.css';
-import { allfeat } from './utils/config';
+import { allfeat, sepolia } from './utils/config';
 
 
 const projectId: string = process.env.NEXT_PUBLIC_WALLET_PROJECT_ID || ""
@@ -32,6 +32,7 @@ const config = getDefaultConfig({
     ],
     chains: [
         allfeat,
+        sepolia
     ],
     ssr: true,
 });
