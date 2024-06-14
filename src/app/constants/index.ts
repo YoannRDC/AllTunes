@@ -14,5 +14,10 @@
       title: "DAO",
       url: "/dao",
     },
+    {
+      id: "3",
+      title: "All Tunes",
+      url: "/alltunes",
+    },
   ];
   
