@@ -18,6 +18,7 @@ interface Song {
   }
 
 const AllTunes = () => {
+    // 'public/music/God.mp3'
     const { address, isConnected } = useAccount()
     const [mp3Tags, setMp3Tags] = useState<any[]>([])
 
@@ -46,18 +47,23 @@ const AllTunes = () => {
         { id: 3, title: 'Song C', artist: 'Artist C', album: 'Album C', year: 2022 },
       ];
       
-      const mySongs = [
-        { id: 1, title: 'Song X', artist: 'Artist X', album: 'Album X', year: 2018 },
-        { id: 2, title: 'Song Y', artist: 'Artist Y', album: 'Album Y', year: 2019 },
+      const initialMySongs = [
+        { id: 100, title: 'Song X', artist: 'Artist X', album: 'Album X', year: 2018 },
       ];
 
       const [selectedSong, setSelectedSong] =  useState<Song | null>(null);
+      const [mySongs, setMySongs] = useState<Song[]>(initialMySongs);
 
       const handleSongClick = (song: Song) => {
         setSelectedSong(song);
       };
 
-      // 'public/music/God.mp3'
+      const handleBuySong = (song: Song) => {
+        if (!mySongs.find(s => s.id === song.id)) {
+          setMySongs([...mySongs, song]);
+        }
+      };
+
     return (
     <Section
       className="pt-[12rem] -mt-[5.25rem]"
@@ -73,10 +79,17 @@ const AllTunes = () => {
             {allSongs.map((song) => (
               <li
                 key={song.id}
-                onClick={() => handleSongClick(song)}
-                className="cursor-pointer mb-1 p-2 border-b"
+                className="flex justify-between items-center mb-1 p-2 border-b"
               >
-                {song.title}
+                <span onClick={() => handleSongClick(song)} className="cursor-pointer">
+                  {song.title}
+                </span>
+                <button
+                  onClick={() => handleBuySong(song)}
+                  className="bg-blue-500 text-white px-2 py-1 rounded"
+                >
+                  Buy
+                </button>
               </li>
             ))}
           </ul>
