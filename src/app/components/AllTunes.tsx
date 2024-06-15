@@ -150,6 +150,9 @@ const AllTunes = () => {
         fetchFiles();
     }, []);
 
+    {/* *********** Toggle Perso / Pro **********/} 
+    const [showFirstContent, setShowFirstContent] = useState(true);
+
     return (
     <Section
       className="pt-[12rem] -mt-[5.25rem]"
@@ -159,190 +162,190 @@ const AllTunes = () => {
       id="alltunes"
     >
 
-    <Tabs>
-      <TabList>
-        <Tab>My Songs</Tab>
-        <Tab>My Albums</Tab>
-        <Tab>My Artists</Tab>
-      </TabList>
-
-        {/* *********** My Songs **********/} 
-      <TabPanel>
-      <div className="relative flex">
-        <div className="w-1/3 p-4">
-          <h2 className="font-bold text-lg mb-2">All Songs</h2>
-          <ul>
-            {allSongs.map((song) => (
-              <li
-                key={song.id}
-                className="flex justify-between items-center mb-1 p-2 border-b"
-              >
-                <span onClick={() => handleSongClick(song)} className="cursor-pointer">
-                  {song.title}
-                </span>
-                <button
-                  onClick={() => handleBuySong(song)}
-                  className="bg-blue-500 text-white px-2 py-1 rounded"
-                >
-                  Buy
-                </button>
-                <TransactionButton />
-              </li>
-            ))}
-          </ul>
-        </div>
-        <div className="w-1/3 p-4 border-l border-r">
-          {selectedSong ? (
-            <div>
-              <h2 className="font-bold text-lg mb-2">Song Details</h2>
-              <p><strong>Title:</strong> {selectedSong.title}</p>
-              <p><strong>Artist:</strong> {selectedSong.artist}</p>
-              <p><strong>Album:</strong> {selectedSong.album}</p>
-              <p><strong>Year:</strong> {selectedSong.year}</p>
-            </div>
-          ) : (
-            <p>Select a song to see details</p>
-          )}
-        </div>
-        <div className="w-1/3 p-4">
-          <h2 className="font-bold text-lg mb-2">My Songs</h2>
-          <ul>
-            {mySongs.map((song) => (
-              <li key={song.id} className="mb-1 p-2 border-b">
-                {song.title}
-              </li>
-            ))}
-          </ul>
-        </div>
-      </div>
-      </TabPanel>
-
-
-        {/* *********** My Albums **********/} 
-        <TabPanel>
-      <div className="relative flex">
-        <div className="w-1/3 p-4">
-          <h2 className="font-bold text-lg mb-2">All Albums</h2>
-          <ul>
-            {allAlbums.map((album) => (
-              <li
-                key={album.id}
-                className="flex justify-between items-center mb-1 p-2 border-b"
-              >
-                <span onClick={() => handleAlbumClick(album)} className="cursor-pointer">
-                  {album.title}
-                </span>
-                <button
-                  onClick={() => handleBuyAlbum(album)}
-                  className="bg-blue-500 text-white px-2 py-1 rounded"
-                >
-                  Buy
-                </button>
-                <TransactionButton />
-              </li>
-            ))}
-          </ul>
-        </div>
-        <div className="w-1/3 p-4 border-l border-r">
-          {selectedAlbum ? (
-            <div>
-              <h2 className="font-bold text-lg mb-2">Album Details</h2>
-              <p><strong>Title:</strong> {selectedAlbum.title}</p>
-              <p><strong>Artist:</strong> {selectedAlbum.artist}</p>
-              <p><strong>Year:</strong> {selectedAlbum.year}</p>
-            </div>
-          ) : (
-            <p>Select a Album to see details</p>
-          )}
-        </div>
-        <div className="w-1/3 p-4">
-          <h2 className="font-bold text-lg mb-2">My Albums</h2>
-          <ul>
-            {myAlbums.map((album) => (
-              <li key={album.id} className="mb-1 p-2 border-b">
-                {album.title}
-              </li>
-            ))}
-          </ul>
-        </div>
-      </div>
-      </TabPanel>
-
-        {/* *********** My Artists **********/} 
-        <TabPanel>
-      <div className="relative flex">
-        <div className="w-1/3 p-4">
-          <h2 className="font-bold text-lg mb-2">All Artists</h2>
-          <ul>
-            {allArtists.map((artist) => (
-              <li
-                key={artist.id}
-                className="flex justify-between items-center mb-1 p-2 border-b"
-              >
-                <span onClick={() => handleArtistClick(artist)} className="cursor-pointer">
-                  {artist.title}
-                </span>
-                <button
-                  onClick={() => handleBuyArtist(artist)}
-                  className="bg-blue-500 text-white px-2 py-1 rounded"
-                >
-                  Buy
-                </button>
-                <TransactionButton />
-              </li>
-            ))}
-          </ul>
-        </div>
-        <div className="w-1/3 p-4 border-l border-r">
-          {selectedArtist ? (
-            <div>
-              <h2 className="font-bold text-lg mb-2">Artist Details</h2>
-              <p><strong>Name:</strong> {selectedArtist.title}</p>
-            </div>
-          ) : (
-            <p>Select a Artist to see details</p>
-          )}
-        </div>
-        <div className="w-1/3 p-4">
-          <h2 className="font-bold text-lg mb-2">My Artists</h2>
-          <ul>
-            {myArtists.map((artist) => (
-              <li key={artist.id} className="mb-1 p-2 border-b">
-                {artist.title}
-              </li>
-            ))}
-          </ul>
-        </div>
-      </div>
-      </TabPanel>
-
-    </Tabs>
-
-    {/*     <div className="relative flex">
-      <SongsList
-        title="All Songs"
-        items={allSongs}
-        onItemClick={handleSongClick}
-        onBuyClick={handleBuySong}
-      />
-      <SongDetails selectedSong={selectedSong} />
-      <MyItemsList title="My Songs" items={mySongs} onItemClick={function (item: Song): void {
-                    throw new Error('Function not implemented.')
-                } } onBuyClick={function (item: Song): void {
-                    throw new Error('Function not implemented.')
-                } } />
-    </div> */}
-
-    {/* READ MP3 SECTION */}
-
     <div>
-      <h1>List of files in the uploads folder</h1>
-      <ul>
-        {files.map((file, index) => (
-          <li key={index}>{file}</li>
-        ))}
-      </ul>
-    </div>
+        <button className="btn btn-info" onClick={() => setShowFirstContent(!showFirstContent)}>
+            Switch Pro/Perso
+        </button>
+        {showFirstContent ? (
+                <div>
+                    <br></br>
+                    <h2 className="font-bold text-lg mb-2">Section for Individuals</h2>
+                    <br></br>
+                    <Tabs>
+                    <TabList>
+                        <Tab>My Songs</Tab>
+                        <Tab>My Albums</Tab>
+                        <Tab>My Artists</Tab>
+                    </TabList>
+
+                    <TabPanel>
+                    <div className="relative flex">
+                        <div className="w-1/3 p-4">
+                        <h2 className="font-bold text-lg mb-2">All Songs</h2>
+                        <ul>
+                            {allSongs.map((song) => (
+                            <li
+                                key={song.id}
+                                className="flex justify-between items-center mb-1 p-2 border-b"
+                            >
+                                <span onClick={() => handleSongClick(song)} className="cursor-pointer">
+                                {song.title}
+                                </span>
+                                <button
+                                onClick={() => handleBuySong(song)}
+                                className="bg-blue-500 text-white px-2 py-1 rounded"
+                                >
+                                Buy
+                                </button>
+                                <TransactionButton />
+                            </li>
+                            ))}
+                        </ul>
+                        </div>
+                        <div className="w-1/3 p-4 border-l border-r">
+                        {selectedSong ? (
+                            <div>
+                            <h2 className="font-bold text-lg mb-2">Song Details</h2>
+                            <p><strong>Title:</strong> {selectedSong.title}</p>
+                            <p><strong>Artist:</strong> {selectedSong.artist}</p>
+                            <p><strong>Album:</strong> {selectedSong.album}</p>
+                            <p><strong>Year:</strong> {selectedSong.year}</p>
+                            </div>
+                        ) : (
+                            <p>Select a song to see details</p>
+                        )}
+                        </div>
+                        <div className="w-1/3 p-4">
+                        <h2 className="font-bold text-lg mb-2">My Songs</h2>
+                        <ul>
+                            {mySongs.map((song) => (
+                            <li key={song.id} className="mb-1 p-2 border-b">
+                                {song.title}
+                            </li>
+                            ))}
+                        </ul>
+                        </div>
+                    </div>
+                    </TabPanel>
+
+                        <TabPanel>
+                    <div className="relative flex">
+                        <div className="w-1/3 p-4">
+                        <h2 className="font-bold text-lg mb-2">All Albums</h2>
+                        <ul>
+                            {allAlbums.map((album) => (
+                            <li
+                                key={album.id}
+                                className="flex justify-between items-center mb-1 p-2 border-b"
+                            >
+                                <span onClick={() => handleAlbumClick(album)} className="cursor-pointer">
+                                {album.title}
+                                </span>
+                                <button
+                                onClick={() => handleBuyAlbum(album)}
+                                className="bg-blue-500 text-white px-2 py-1 rounded"
+                                >
+                                Buy
+                                </button>
+                                <TransactionButton />
+                            </li>
+                            ))}
+                        </ul>
+                        </div>
+                        <div className="w-1/3 p-4 border-l border-r">
+                        {selectedAlbum ? (
+                            <div>
+                            <h2 className="font-bold text-lg mb-2">Album Details</h2>
+                            <p><strong>Title:</strong> {selectedAlbum.title}</p>
+                            <p><strong>Artist:</strong> {selectedAlbum.artist}</p>
+                            <p><strong>Year:</strong> {selectedAlbum.year}</p>
+                            </div>
+                        ) : (
+                            <p>Select a Album to see details</p>
+                        )}
+                        </div>
+                        <div className="w-1/3 p-4">
+                        <h2 className="font-bold text-lg mb-2">My Albums</h2>
+                        <ul>
+                            {myAlbums.map((album) => (
+                            <li key={album.id} className="mb-1 p-2 border-b">
+                                {album.title}
+                            </li>
+                            ))}
+                        </ul>
+                        </div>
+                    </div>
+                    </TabPanel>
+
+                        <TabPanel>
+                    <div className="relative flex">
+                        <div className="w-1/3 p-4">
+                        <h2 className="font-bold text-lg mb-2">All Artists</h2>
+                        <ul>
+                            {allArtists.map((artist) => (
+                            <li
+                                key={artist.id}
+                                className="flex justify-between items-center mb-1 p-2 border-b"
+                            >
+                                <span onClick={() => handleArtistClick(artist)} className="cursor-pointer">
+                                {artist.title}
+                                </span>
+                                <button
+                                onClick={() => handleBuyArtist(artist)}
+                                className="bg-blue-500 text-white px-2 py-1 rounded"
+                                >
+                                Buy
+                                </button>
+                                <TransactionButton />
+                            </li>
+                            ))}
+                        </ul>
+                        </div>
+                        <div className="w-1/3 p-4 border-l border-r">
+                        {selectedArtist ? (
+                            <div>
+                            <h2 className="font-bold text-lg mb-2">Artist Details</h2>
+                            <p><strong>Name:</strong> {selectedArtist.title}</p>
+                            </div>
+                        ) : (
+                            <p>Select a Artist to see details</p>
+                        )}
+                        </div>
+                        <div className="w-1/3 p-4">
+                        <h2 className="font-bold text-lg mb-2">My Artists</h2>
+                        <ul>
+                            {myArtists.map((artist) => (
+                            <li key={artist.id} className="mb-1 p-2 border-b">
+                                {artist.title}
+                            </li>
+                            ))}
+                        </ul>
+                        </div>
+                    </div>
+                    </TabPanel>
+
+                    </Tabs>
+
+                    {/* READ MP3 SECTION */}
+
+                    <div>
+                    <h2 className="font-bold text-lg mb-2">Available titles (loaded by the artists)</h2>
+                    <ul>
+                        {files.map((file, index) => (
+                        <li key={index}>{file}</li>
+                        ))}
+                    </ul>
+                    </div>
+                </div>
+            ) : (
+                <div>
+                    <br></br>
+                    <h2 className="font-bold text-lg mb-2">Section for Professionals</h2>
+                    <br></br>
+                    <p>The Pro Section of AllTunes offers a copyright payment mechanism similar to that of SACEM.</p>
+                </div>
+            )}
+        </div>
 
     </Section>
     )
