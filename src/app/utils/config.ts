@@ -10,7 +10,7 @@ import {
 
 const network =
   process.env.NEXT_PUBLIC_ENABLE_TESTNETS === "true" ? "testnet" : "main";
-console.log("config.ts:testnet", network);
+// console.log("config.ts:testnet", network);
 let networkConfig: IHarmonyNetwork;
 
 switch (network) {
@@ -21,7 +21,7 @@ switch (network) {
   default:
     networkConfig = HarmonyTestnet;
 }
-console.log("config.ts:networkConfig", networkConfig);
+// console.log("config.ts:networkConfig", networkConfig);
 export const allfeat = {
   id: networkConfig.id,
   name: networkConfig.name,
@@ -40,7 +40,7 @@ export const allfeat = {
     },
   },
 } as const satisfies Chain;
-console.log("config.ts:allfeat", allfeat);
+// console.log("config.ts:allfeat", allfeat);
 
 export const sepolia = {
   id: Sepolia.id,
@@ -68,18 +68,18 @@ export const config = createConfig({
     [sepolia.id]: http(),
   },
 });
-console.log("config.ts:config", config);
+// console.log("config.ts:config", config);
 
 
 export const clientHarmony = createPublicClient({
   chain: allfeat,
   transport: http(HarmonyTestnet.rpcUrl[0]),
 });
-console.log("config.ts:client", clientHarmony);
+// console.log("config.ts:client", clientHarmony);
 
 
 export const clientSepolia = createPublicClient({
     chain: sepolia,
     transport: http(Sepolia.rpcUrl[0]),
   });
-  console.log("config.ts:client", clientSepolia);
+// console.log("config.ts:client", clientSepolia);

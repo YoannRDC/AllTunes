@@ -45,7 +45,7 @@ const AllTunes = () => {
 
     const musicMetadata = require('music-metadata-browser');
 
-    (async () => {
+    /* (async () => {
 
         try {
             const response = await fetch('public/music/God.mp3');
@@ -60,7 +60,7 @@ const AllTunes = () => {
           }
           
       }
-    )();
+    )(); */
 
     
     {/* *********** My Songs **********/} 
@@ -130,6 +130,26 @@ const AllTunes = () => {
     }
     };
 
+    
+    {/* *********** Read loaded MP3 files **********/} 
+    const [files, setFiles] = useState<string[]>([]);
+    
+    useEffect(() => {
+        const fetchFiles = async () => {
+            const response = await fetch('/api/files');
+            console.log("response tmp:", response);
+            if (response.ok) {
+                const data = await response.json();
+                console.log("data tmp:", response);
+                setFiles(data);
+            } else {
+                console.error('Failed to fetch files');
+            }
+        };
+
+        fetchFiles();
+    }, []);
+
     return (
     <Section
       className="pt-[12rem] -mt-[5.25rem]"
@@ -139,7 +159,7 @@ const AllTunes = () => {
       id="alltunes"
     >
 
-<Tabs>
+    <Tabs>
       <TabList>
         <Tab>My Songs</Tab>
         <Tab>My Albums</Tab>
@@ -297,9 +317,8 @@ const AllTunes = () => {
       </TabPanel>
 
     </Tabs>
-    
 
-{/*     <div className="relative flex">
+    {/*     <div className="relative flex">
       <SongsList
         title="All Songs"
         items={allSongs}
@@ -313,6 +332,17 @@ const AllTunes = () => {
                     throw new Error('Function not implemented.')
                 } } />
     </div> */}
+
+    {/* READ MP3 SECTION */}
+
+    <div>
+      <h1>List of files in the uploads folder</h1>
+      <ul>
+        {files.map((file, index) => (
+          <li key={index}>{file}</li>
+        ))}
+      </ul>
+    </div>
 
     </Section>
     )
