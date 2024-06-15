@@ -3,6 +3,7 @@ import React, { useEffect, useState } from 'react'
 import { useAccount } from 'wagmi'
 import NotConnected from './NotConnected'
 import Section from './Section'
+import TransactionButton from './TransactionButton';
 // import * as mm from 'music-metadata/lib/core';
 // import { parseFile } from 'music-metadata';  // music-metadata
 //import { parseFile } from '../ ../lib/index.js';  // music-metadata
@@ -90,6 +91,7 @@ const AllTunes = () => {
                 >
                   Buy
                 </button>
+                <TransactionButton />
               </li>
             ))}
           </ul>
